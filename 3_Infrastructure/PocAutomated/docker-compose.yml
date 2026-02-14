@@ -1,0 +1,28 @@
+version: '3.8'
+services:
+  # --- BD CLOUD (Puerto 5440) ---
+  # Incluye la tabla 'outbox' para el patrón
+  postgres-cloud-outbox:
+    image: postgres:15
+    container_name: postgres-cloud-outbox
+    environment:
+      - POSTGRES_DB=Db_Cloud
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=clave
+    ports:
+      - "5440:5432"
+    volumes:
+      - ./sql/cloud_init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  # --- BD LEGACY (Puerto 5441) ---
+  postgres-legacy-outbox:
+    image: postgres:15
+    container_name: postgres-legacy-outbox
+    environment:
+      - POSTGRES_DB=Db_OnPremise
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=clave
+    ports:
+      - "5441:5432"
+    volumes:
+      - ./sql/legacy_init.sql:/docker-entrypoint-initdb.d/init.sql
