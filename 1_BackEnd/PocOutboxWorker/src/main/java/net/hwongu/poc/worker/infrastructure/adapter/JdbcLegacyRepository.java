@@ -32,7 +32,7 @@ import java.sql.*;
 public class JdbcLegacyRepository implements LegacyRepository {
 
     // Conecta a la BD LEGACY (On-Premise)
-    private final String URL = "jdbc:postgresql://localhost:5432/Db_OnPremise";
+    private final String URL = "jdbc:postgresql://localhost:5441/Db_OnPremise";
     private final String USER = "postgres";
     private final String PASS = "clave";
 
